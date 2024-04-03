@@ -5,15 +5,13 @@ type Nullable<T> = null | T
 export interface ICalendarPicker {
   placeholder?: string
   type?: 'month' | 'full'
-  onChange?: (value: Nullable<string>) => void
+  onChange: (value: Nullable<string>) => void
   mainColor?: string
-  lang?: 'en' | 'ru'
-  selectedDate: Nullable<Date | string>
-  setSelectedDate: Dispatch<SetStateAction<Nullable<Date | string>>>
-  toRightPosition?: boolean
-  toBottomPosition?: boolean
+  locale?: 'en' | 'ru'
+  value: Nullable<string>
   returnedFormat?: string
-  customStyles?: CSSProperties
+  globalStyles?: CSSProperties
+  calendarStyles?: CSSProperties
 }
 
 export interface IYears {
@@ -37,13 +35,13 @@ export interface IDays {
   showYears(): void
   selectedYear: number
   showMonths(): void
-  selectedDate: Nullable<Date | string>
+  value: Nullable<string>
   displayData: Array<number>
 }
 
 export interface IMonths {
   action?: (date: string) => void
-  setSelectedDate: Dispatch<SetStateAction<Nullable<Date | string>>>
+  onChange: (value: Nullable<string>) => void
   type?: 'month' | 'full'
   returnedFormat: string
   selectedMonth: number

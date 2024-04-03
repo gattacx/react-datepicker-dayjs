@@ -1,15 +1,25 @@
 {
   "name": "react-datepicker-dayjs",
-  "private": false,
+  "private": true,
   "description": "datePicker on react + dayjs",
-  "version": "0.0.34",
+  "license": "MIT",
+  "version": "1.0.1",
+  "author": "Bogdan Voitenko <voytenko@aol.com> @voitenkodev",
+  "homepage": "https://github.com/BladeOfAurora/react-datepicker-dayjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BladeOfAurora/react-datepicker-dayjs"
+  },
+  "bugs": {
+    "url": "https://github.com/BladeOfAurora/react-datepicker-dayjs/issues",
+    "email": "voytenko@aol.com"
+  },
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "files": [
     "dist"
   ],
-  "license": "MIT",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
@@ -21,9 +31,6 @@
       "import": "./dist/style.css",
       "require": "./dist/style.css"
     }
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "scripts": {
     "dev": "vite",

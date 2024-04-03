@@ -19,7 +19,7 @@ export const Days = (props: IDays) => {
     showYears,
     selectedYear,
     showMonths,
-    selectedDate,
+    value,
     returnedFormat,
     currentYear,
     currentMonth
@@ -97,7 +97,7 @@ export const Days = (props: IDays) => {
                 key={index}
                 style={{
                   background:
-                    selectedDate ===
+                    value ===
                     dayjs(new Date(selectedYear, selectedMonth, item)).format(returnedFormat)
                       ? mainColor
                       : dayjs(new Date(currentYear, currentMonth, item)).format(returnedFormat) ===
@@ -107,7 +107,7 @@ export const Days = (props: IDays) => {
                         ? '#D8DDED'
                         : 'none',
                   color:
-                    selectedDate ===
+                    value ===
                     dayjs(new Date(selectedYear, selectedMonth, item)).format(returnedFormat)
                       ? 'white'
                       : '#2E2E36'

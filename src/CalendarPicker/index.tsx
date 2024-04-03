@@ -15,14 +15,12 @@ const CalendarPicker = (props: ICalendarPicker) => {
     type = 'full',
     onChange,
     mainColor = '#2F8DB3',
-    lang = 'en',
-    selectedDate,
-    setSelectedDate,
-    toRightPosition = false,
-    toBottomPosition = false,
+    locale = 'en',
+    value,
+    calendarStyles,
     returnedFormat = 'DD.MM.YYYY',
     placeholder = returnedFormat,
-    customStyles
+    globalStyles
   } = props
   const currentMonth = Number(dayjs(new Date()).format('M'))
   const currentYear = Number(dayjs(new Date()).format('YYYY'))
@@ -33,28 +31,16 @@ const CalendarPicker = (props: ICalendarPicker) => {
   const [visibleCalendar, setVisibleCalendar] = useState(false)
   const [visibleYears, setVisibleYears] = useState(false)
   const [visibleMonths, setVisibleMonths] = useState(false)
-  const { t } = useTranslation(lang)
-  dayjs.locale('en')
+  const { t } = useTranslation(locale)
+  dayjs.locale(locale)
   const defaultLabel = useMemo(() => {
-    switch (type) {
-      case 'full':
-        return selectedDate ? selectedDate : placeholder
-      case 'month':
-        return selectedDate ? selectedDate : placeholder
-    }
-  }, [selectedDate])
+    return value ? value : placeholder
+  }, [value])
 
   const displayData = useMemo(() => {
     return calendar(selectedMonth, selectedYear)
   }, [selectedMonth, selectedYear])
 
-  const positionStyles = useMemo(() => {
-    if (toBottomPosition) {
-      return { bottom: '48px' }
-    } else {
-      return { top: '48px' }
-    }
-  }, [toBottomPosition])
   const changeVisible = () => setVisibleCalendar((prevState) => !prevState)
   const closeCalendar = () => setVisibleCalendar(false)
 
@@ -63,7 +49,6 @@ const CalendarPicker = (props: ICalendarPicker) => {
   const selectDay = (day: number, year: number = selectedYear, month: number = selectedMonth) => {
     const selected = new Date(year, month, day)
     onChange && onChange(dayjs(selected).format(returnedFormat))
-    setSelectedDate(dayjs(selected).format(returnedFormat))
     setVisibleCalendar(false)
   }
 
@@ -88,7 +73,6 @@ const CalendarPicker = (props: ICalendarPicker) => {
   const resetData = () => {
     setSelectedYear(Number(currentYear))
     setSelectedMonth(Number(currentMonth))
-    setSelectedDate(null)
     onChange && onChange(null)
     setVisibleMonths(false)
     setVisibleYears(false)
@@ -118,7 +102,7 @@ const CalendarPicker = (props: ICalendarPicker) => {
       return (
         <Months
           selectedYear={selectedYear}
-          lang={lang}
+          lang={locale}
           selectedMonth={selectedMonth}
           returnedFormat={returnedFormat}
           setSelectedMonth={setSelectedMonth}
@@ -127,7 +111,7 @@ const CalendarPicker = (props: ICalendarPicker) => {
           currentYear={currentYear}
           setVisibleMonths={setVisibleMonths}
           setVisibleCalendar={setVisibleCalendar}
-          setSelectedDate={setSelectedDate}
+          onChange={onChange}
         />
       )
     } else {
@@ -136,7 +120,7 @@ const CalendarPicker = (props: ICalendarPicker) => {
           <Months
             selectedYear={selectedYear}
             returnedFormat={returnedFormat}
-            lang={lang}
+            lang={locale}
             selectedMonth={selectedMonth}
             setSelectedMonth={setSelectedMonth}
             mainColor={mainColor}
@@ -146,13 +130,13 @@ const CalendarPicker = (props: ICalendarPicker) => {
             type={'month'}
             setVisibleCalendar={setVisibleCalendar}
             action={onChange}
-            setSelectedDate={setSelectedDate}
+            onChange={onChange}
           />
         )
       } else {
         return (
           <Days
-            lang={lang}
+            lang={locale}
             mainColor={mainColor}
             currentDay={currentDay}
             selectDay={selectDay}
@@ -165,7 +149,7 @@ const CalendarPicker = (props: ICalendarPicker) => {
             showMonths={showMonths}
             selectedYear={selectedYear}
             displayData={displayData}
-            selectedDate={selectedDate}
+            value={value}
             returnedFormat={returnedFormat}
           />
         )
@@ -173,17 +157,13 @@ const CalendarPicker = (props: ICalendarPicker) => {
     }
   }
   return (
-    <div className={'calendar-container'} ref={calendarRef} style={{ ...customStyles }}>
-      <label style={{ color: selectedDate ? '#2E2E36' : '#7E7E7E' }}>{String(defaultLabel)}</label>
+    <div className={'calendar-container'} ref={calendarRef} style={{ ...globalStyles }}>
+      <label style={{ color: value ? '#2E2E36' : '#7E7E7E' }}>{String(defaultLabel)}</label>
       <img src={calendarSvg} alt={'calendar'} onClick={changeVisible} />
       {visibleCalendar && (
         <div
           className={'data-container'}
-          style={{
-            right: toRightPosition ? 0 : 'auto',
-            left: toRightPosition ? 'auto' : 0,
-            ...positionStyles
-          }}
+          style={{...calendarStyles}}
         >
           <CurrentShow />
           <div className={'action-buttons'}>

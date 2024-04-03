@@ -18,8 +18,7 @@ export const Months = (props: IMonths) => {
     type,
     setVisibleCalendar,
     returnedFormat,
-    setSelectedDate,
-    action
+    onChange,
   } = props
   const { t } = useTranslation(lang)
 
@@ -40,8 +39,7 @@ export const Months = (props: IMonths) => {
     if (type === 'month') {
       type === 'month' && setVisibleCalendar(false)
       const selected = new Date(selectedYear, selectedMonth - 1)
-      setSelectedDate(dayjs(selected).format(returnedFormat))
-      action && action(dayjs(selected).format(returnedFormat))
+      onChange && onChange(dayjs(selected).format(returnedFormat))
     }
   }
 
