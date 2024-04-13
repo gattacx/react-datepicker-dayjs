@@ -1,5 +1,5 @@
 {
-  "name": "@bladeofaurora/react-datepicker-dayjs",
+  "name": "react-datepicker-dayjs",
   "private": false,
   "description": "datePicker on react + dayjs",
   "license": "MIT",
