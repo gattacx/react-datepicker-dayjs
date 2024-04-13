@@ -8,7 +8,7 @@ export interface ICalendarPicker {
   onChange: (value: Nullable<string>) => void
   mainColor?: string
   locale?: 'en' | 'ru'
-  value: Nullable<string>
+  value?: Nullable<string>
   returnedFormat?: string
   globalStyles?: CSSProperties
   calendarStyles?: CSSProperties
@@ -35,7 +35,7 @@ export interface IDays {
   showYears(): void
   selectedYear: number
   showMonths(): void
-  value: Nullable<string>
+  value?: Nullable<string>
   displayData: Array<number>
 }
 
