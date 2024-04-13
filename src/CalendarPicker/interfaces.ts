@@ -23,7 +23,7 @@ export interface IYears {
 
 export interface IDays {
   returnedFormat: string
-  lang: 'en' | 'ru'
+  locale: 'en' | 'ru'
   mainColor: string
   currentDay: number
   selectDay: (day: number) => void

@@ -2,7 +2,7 @@
 
 ### Simple datepicker on React + dayjs
 
-![](https://i.ibb.co/Mp7JtZ7/tg-image-481559596.jpg)
+![](https://i.ibb.co/7QrKqbv/tg-image-2478850552.jpg)
 
 
 ## Installation
@@ -22,8 +22,8 @@ import { CalendarPicker } from 'react-datepicker-dayjs'
 import '../../../node_modules/react-datepicker-dayjs/dist/style.css'
 
 function App() {
-
-// default state is null or string (dayjs formatted default to string).
+    
+    // dayjs default return is string format
 	const [date, setDate] = useState<string | null>(null)
 	
 	return (
@@ -32,17 +32,17 @@ function App() {
 }
 ```
 
-Property                | type           | Values                          | Description                                                                                
-------------------------|----------------|---------------------------------|--------------------------------------------------------------------------------------------
-locale                  | string         | "en", "ru"                      | Calendar language                                                                          
-type                    | String         | "month", "full"                 | Type of returned date                                                                      
-onChange*               | Date, null     | null, '05.09.1994'              | Returned date or null (if reset)                       
-value*                  | Date, null     | null, '05.09.1994'              | Show date or placeholder                                                               
-returnedFormat          | string         | "YYYY.MM.DD", "MM.YYYY" and etc | Returned format of value, default: 'DD.MM.YYYY'
-globalStyles            | CSSProperties  | any styles                      | Styles for global container                                                       
-calendarStyles          | CSSProperties  | any styles                      | Styles for calendar container                                                                       
-placeholder             | string         | any string                      | default placeholder it's ReturnedFormat                                                
-mainColor               | string         | any color                       | Color is active date. Default color: #2F8DB3                                                 
+Property                | type          | Values                          | Description                                                                                
+------------------------|---------------|---------------------------------|--------------------------------------------------------------------------------------------
+locale                  | string        | "en", "ru"                      | Changed language and day of started week. Default: en                                                                     
+type                    | String        | "month", "full"                 | Type of returned date (when type of month, days is not show)                                                                      
+onChange*               | string, null  | null, '05.09.1994'              | Returned date or null (if reset). Default: month                       
+value*                  | string, null  | null, '05.09.1994'              | Show date or placeholder                                                               
+returnedFormat          | string        | "YYYY.MM.DD", "MM.YYYY" and etc | Returned format of value, default: 'DD.MM.YYYY'
+placeholder             | string        | any string                      | default placeholder it's returnedFormat   
+globalStyles            | CSSProperties | any styles                      | Styles for global container                                                       
+calendarStyles          | CSSProperties | any styles                      | Styles for calendar container                                                                        
+mainColor               | string        | any color                       | Color is active date. Default: #2F8DB3                                                 
 
 
 ### Todos
@@ -52,4 +52,3 @@ mainColor               | string         | any color                       | Col
 - Tests
 - Documentation
 
-### Private

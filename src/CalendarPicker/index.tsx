@@ -12,13 +12,13 @@ import { Months} from "./components/months.tsx";
 
 const CalendarPicker = (props: ICalendarPicker) => {
   const {
-    type = 'full',
-    onChange,
-    mainColor = '#2F8DB3',
-    locale = 'en',
     value,
-    calendarStyles,
+    onChange,
+    locale = 'en',
+    type = 'full',
     returnedFormat = 'DD.MM.YYYY',
+    mainColor = '#2F8DB3',
+    calendarStyles,
     placeholder = returnedFormat,
     globalStyles
   } = props
@@ -46,7 +46,7 @@ const CalendarPicker = (props: ICalendarPicker) => {
 
   useOnClickOutside(calendarRef, closeCalendar)
 
-  const selectDay = (day: number, year: number = selectedYear, month: number = selectedMonth) => {
+  const selectDay = (day: number, year: number = selectedYear, month: number = selectedMonth - 1) => {
     const selected = new Date(year, month, day)
     onChange && onChange(dayjs(selected).format(returnedFormat))
     setVisibleCalendar(false)
@@ -136,7 +136,7 @@ const CalendarPicker = (props: ICalendarPicker) => {
       } else {
         return (
           <Days
-            lang={locale}
+            locale={locale}
             mainColor={mainColor}
             currentDay={currentDay}
             selectDay={selectDay}

@@ -8,7 +8,7 @@ import dayjs from 'dayjs'
 
 export const Days = (props: IDays) => {
   const {
-    lang,
+    locale,
     displayData,
     mainColor,
     currentDay,
@@ -24,12 +24,12 @@ export const Days = (props: IDays) => {
     currentYear,
     currentMonth
   } = props
-  const { t } = useTranslation(lang)
+  const { t } = useTranslation(locale)
 
   const displayDataDoMonth = useMemo(() => {
     if (displayData) {
       const daysDoMonth = new Date(selectedYear, selectedMonth - 1, 1).getDay()
-      const returnedDay = daysDoMonth === 0 ? 6 : daysDoMonth - 1
+      const returnedDay = daysDoMonth === 0 ? (locale === 'en' ? 7 : 6) : daysDoMonth - ( locale === 'en' ? 0 : 1)
       if (returnedDay !== 0 && returnedDay !== 7) {
         return calendar(Number(selectedMonth) - 1, Number(selectedYear)).slice(-returnedDay)
       } else {
@@ -45,10 +45,16 @@ export const Days = (props: IDays) => {
         selectedMonth - 1,
         displayData[displayData.length - 1]
       ).getDay()
-      if (daysOfMonth > 0 && daysOfMonth !== 7) {
-        return calendar(Number(selectedMonth) + 1, Number(selectedYear)).slice(0, 7 - daysOfMonth)
-      } else {
-        return []
+      switch (locale) {
+        case "en":
+          return calendar(Number(selectedMonth) + 1, Number(selectedYear)).slice(0, 7 - daysOfMonth - 1)
+          break
+        case "ru":
+          if (daysOfMonth > 0 && daysOfMonth !== 7) {
+            return calendar(Number(selectedMonth) + 1, Number(selectedYear)).slice(0, 7 - daysOfMonth)
+          } else {
+            return []
+          }
       }
     }
   }, [displayData])
@@ -71,13 +77,14 @@ export const Days = (props: IDays) => {
 
       <div className={'calendar-data'}>
         <div className={'days-of-week'}>
+          {locale === 'en' && <label style={{ color: '#FF5B5B'}}>{t('sunday')}</label>}
           <label>{t('monday')}</label>
           <label>{t('tuesday')}</label>
           <label>{t('wednesday')}</label>
           <label>{t('thursday')}</label>
           <label>{t('friday')}</label>
           <label>{t('saturday')}</label>
-          <label style={{ color: '#FF5B5B' }}>{t('sunday')}</label>
+          {locale === 'ru' && <label style={{ color: '#FF5B5B'}}>{t('sunday')}</label>}
         </div>
         <div className={'days-of-calendar'}>
           {displayDataDoMonth?.map((item: number, index: number) => {
