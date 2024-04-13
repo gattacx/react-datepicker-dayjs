@@ -79,7 +79,7 @@ const CalendarPicker = (props: ICalendarPicker) => {
     setVisibleCalendar(false)
   }
   const selectToday = () => {
-    selectDay(Number(currentDay), currentYear, currentMonth)
+    selectDay(Number(currentDay), currentYear, currentMonth - 1)
     setSelectedYear(Number(currentYear))
     setSelectedMonth(Number(currentMonth))
     setVisibleMonths(false)
