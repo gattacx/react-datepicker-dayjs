@@ -22,9 +22,8 @@ import { CalendarPicker } from 'react-datepicker-dayjs'
 import '../../../node_modules/react-datepicker-dayjs/dist/style.css'
 
 function App() {
-    
     // dayjs default return is string format
-	const [date, setDate] = useState<string | null>(null)
+	const [date, setDate] = useState<string | null>()
 	
 	return (
 		<DatePicker value={date} onChange={setDate} />
