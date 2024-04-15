@@ -8,7 +8,6 @@ export const Day = (props: IDay) => {
     const { selectDay, item, returnedFormat, selectedMonth, selectedYear, currentYear, currentMonth, currentDay, max, min, mainColor, value } = props
 
     const checkMinMaxDate = useMemo(() => {
-        console.log(selectedMonth)
         return Number(returnedDate(selectedYear, selectedMonth - 1, item, returnedFormat, 'unix')) < dayjs(min).unix()
             || Number(returnedDate(selectedYear, selectedMonth - 1, item, returnedFormat, 'unix')) > dayjs(max).unix()
     }, [selectedYear, selectedMonth])
