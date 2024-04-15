@@ -1,10 +1,10 @@
 import toLeftSvg from '../../assets/to_left.svg'
-import { calendar, monthList} from "../utils.ts";
+import {calendar, monthList} from "../utils.ts";
 import toRightSvg from '../../assets/to_right.svg'
 import { useTranslation} from "../hooks/useTranslation.ts";
 import { IDays} from "../interfaces.ts";
 import { useMemo } from 'react'
-import dayjs from 'dayjs'
+import {Day} from "./day.tsx";
 
 export const Days = (props: IDays) => {
   const {
@@ -22,7 +22,9 @@ export const Days = (props: IDays) => {
     value,
     returnedFormat,
     currentYear,
-    currentMonth
+    currentMonth,
+    min,
+    max
   } = props
   const { t } = useTranslation(locale)
 
@@ -48,7 +50,6 @@ export const Days = (props: IDays) => {
       switch (locale) {
         case "en":
           return calendar(Number(selectedMonth) + 1, Number(selectedYear)).slice(0, 7 - daysOfMonth - 1)
-          break
         case "ru":
           if (daysOfMonth > 0 && daysOfMonth !== 7) {
             return calendar(Number(selectedMonth) + 1, Number(selectedYear)).slice(0, 7 - daysOfMonth)
@@ -96,32 +97,20 @@ export const Days = (props: IDays) => {
           })}
           {displayData.map((item: number, index: number) => {
             return (
-              <button
-                type={'button'}
-                className={'hover-class'}
-                onClick={() => selectDay(item)}
-                value={item}
-                key={index}
-                style={{
-                  background:
-                    value ===
-                    dayjs(new Date(selectedYear, selectedMonth, item)).format(returnedFormat)
-                      ? mainColor
-                      : dayjs(new Date(currentYear, currentMonth, item)).format(returnedFormat) ===
-                            dayjs(new Date(selectedYear, selectedMonth, item)).format(
-                              returnedFormat
-                            ) && item === currentDay
-                        ? '#D8DDED'
-                        : 'none',
-                  color:
-                    value ===
-                    dayjs(new Date(selectedYear, selectedMonth, item)).format(returnedFormat)
-                      ? 'white'
-                      : '#2E2E36'
-                }}
-              >
-                {item}
-              </button>
+             <Day selectDay={selectDay}
+                  item={item}
+                  selectedYear={selectedYear}
+                  selectedMonth={selectedMonth}
+                  returnedFormat={returnedFormat}
+                  mainColor={mainColor}
+                  currentMonth={currentMonth}
+                  currentYear={currentYear}
+                  currentDay={currentDay}
+                  min={min}
+                  max={max}
+                  key={index}
+                  value={value}
+                  />
             )
           })}
           {displayDataAfterMonth?.map((item: number, index: number) => {

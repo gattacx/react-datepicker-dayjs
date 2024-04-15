@@ -16,11 +16,13 @@ const CalendarPicker = (props: ICalendarPicker) => {
     onChange,
     locale = 'en',
     type = 'full',
-    returnedFormat = 'DD.MM.YYYY',
+    returnedFormat = 'YYYY-MM-DD',
     mainColor = '#2F8DB3',
     calendarStyles,
     placeholder = returnedFormat,
-    globalStyles
+    globalStyles,
+    min,
+    max
   } = props
   const currentMonth = Number(dayjs(new Date()).format('M'))
   const currentYear = Number(dayjs(new Date()).format('YYYY'))
@@ -151,6 +153,8 @@ const CalendarPicker = (props: ICalendarPicker) => {
             displayData={displayData}
             value={value}
             returnedFormat={returnedFormat}
+            min={min}
+            max={max}
           />
         )
       }
@@ -158,13 +162,15 @@ const CalendarPicker = (props: ICalendarPicker) => {
   }
   return (
     <div className={'calendar-container'} ref={calendarRef} style={{ ...globalStyles }}>
-      <label style={{ color: value ? '#2E2E36' : '#7E7E7E' }}>{String(defaultLabel)}</label>
-      <img src={calendarSvg} alt={'calendar'} onClick={changeVisible} />
+      <div onClick={changeVisible} className={'panel-container'}>
+        <label style={{color: value ? '#2E2E36' : '#7E7E7E'}}>{String(defaultLabel)}</label>
+        <img src={calendarSvg} alt={'calendar'}/>
+      </div>
       {visibleCalendar && (
-        <div
-          className={'data-container'}
-          style={{...calendarStyles}}
-        >
+          <div
+              className={'data-container'}
+              style={{...calendarStyles}}
+          >
           <CurrentShow />
           <div className={'action-buttons'}>
             <button onClick={resetData} type={'button'} style={{ color: mainColor }}>

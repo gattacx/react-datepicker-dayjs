@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 const numberToArray = (size: number) => Array.from({ length: size }, (_, i) => i + 1)
 
 export function years(currentYear: number) {
@@ -45,3 +47,12 @@ export const monthList: Array<string> = [
   'November',
   'December'
 ]
+
+export function returnedDate(year: number, month: number, item: number, returnedFormat: string, type: string){
+  switch (type) {
+    case 'unix':
+      return dayjs(new Date(year, month, item)).unix()
+    case 'date':
+      return dayjs(new Date(year, month, item)).format(returnedFormat)
+  }
+}

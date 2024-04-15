@@ -11,12 +11,18 @@
     gap: 20px;
     position: relative;
     background: #edf2f7;
-    > label {
-        cursor: pointer;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 24px;
+    > .panel-container {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        > label {
+            cursor: pointer;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 24px;
+        }
     }
 }
 
@@ -100,8 +106,8 @@
             color: #2E2E36 !important;
         }
         > .inactive {
-            color: #D8DDED;
-            background: none;
+            color: #D8DDED !important;
+            background: none !important;
         }
         > .inactive:hover{
             color: #D8DDED !important;

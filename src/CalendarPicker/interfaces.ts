@@ -12,6 +12,8 @@ export interface ICalendarPicker {
   returnedFormat?: string
   globalStyles?: CSSProperties
   calendarStyles?: CSSProperties
+  min?: string
+  max?: string
 }
 
 export interface IYears {
@@ -37,6 +39,8 @@ export interface IDays {
   showMonths(): void
   value?: Nullable<string>
   displayData: Array<number>
+  min?: string
+  max?: string
 }
 
 export interface IMonths {
@@ -56,3 +60,18 @@ export interface IMonths {
 }
 
 export type LangJSON = Record<string, string>
+
+export interface IDay {
+  selectDay: (day: number) => void
+  item: number
+  value?: Nullable<string>
+  selectedYear: number
+  selectedMonth: number
+  returnedFormat: string
+  mainColor: string
+  currentMonth: number
+  currentYear: number
+  currentDay: number
+  min?: string
+  max?: string
+}
