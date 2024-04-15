@@ -38,7 +38,8 @@
   "keywords": {
     "react",
     "datepicker",
-    "dayjs"
+    "dayjs",
+    "date-picker"
   },
   "scripts": {
     "dev": "vite",
