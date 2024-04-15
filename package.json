@@ -35,6 +35,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "keywords": {
+    "react",
+    "datepicker",
+    "dayjs"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
