@@ -34,8 +34,8 @@ function App() {
 Property                | type          | Values                          | Description                                                                                
 ------------------------|---------------|---------------------------------|--------------------------------------------------------------------------------------------
 locale                  | string        | "en", "ru"                      | Changed language and day of started week. Default: en                                                                     
-type                    | String        | "month", "full"                 | Type of returned date (when type of month, days is not show)                                                                      
-onChange*               | string, null  | null, '05.09.1994'              | Returned date or null (if reset). Default: month                       
+type                    | String        | "month", "full"                 | Type of returned date (when type of month, days is not show). Default: full                                                                    
+onChange*               | string, null  | null, '05.09.1994'              | Returned date or null (if reset)                   
 value*                  | string, null  | null, '05.09.1994'              | Show date or placeholder                                                               
 returnedFormat          | string        | "YYYY.MM.DD", "MM.YYYY" and etc | Returned format of value, default: 'DD.MM.YYYY'
 placeholder             | string        | any string                      | default placeholder it's returnedFormat   
