@@ -2,7 +2,7 @@
 
 ### Simple datepicker on React + dayjs
 
-![](https://i.ibb.co/7QrKqbv/tg-image-2478850552.jpg)
+![](https://i.ibb.co/wLKhJRC/tg-image-2248843087.jpg)
 
 
 ## Installation
