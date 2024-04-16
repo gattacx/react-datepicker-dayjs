@@ -1,14 +1,13 @@
 import { Dispatch, SetStateAction } from 'react'
 import { CSSProperties } from "react";
 
-type Nullable<T> = null | T
 export interface ICalendarPicker {
   placeholder?: string
   type?: 'month' | 'full'
-  onChange: (value: Nullable<string>) => void
+  onChange: (value?: string) => void
   mainColor?: string
   locale?: 'en' | 'ru'
-  value?: Nullable<string>
+  value?: string
   returnedFormat?: string
   globalStyles?: CSSProperties
   calendarStyles?: CSSProperties
@@ -37,7 +36,7 @@ export interface IDays {
   showYears(): void
   selectedYear: number
   showMonths(): void
-  value?: Nullable<string>
+  value?: string
   displayData: Array<number>
   min?: string
   max?: string
@@ -45,7 +44,7 @@ export interface IDays {
 
 export interface IMonths {
   action?: (date: string) => void
-  onChange: (value: Nullable<string>) => void
+  onChange: (value?: string) => void
   type?: 'month' | 'full'
   returnedFormat: string
   selectedMonth: number
@@ -64,7 +63,7 @@ export type LangJSON = Record<string, string>
 export interface IDay {
   selectDay: (day: number) => void
   item: number
-  value?: Nullable<string>
+  value?: string
   selectedYear: number
   selectedMonth: number
   returnedFormat: string

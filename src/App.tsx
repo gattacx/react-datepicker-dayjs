@@ -1,11 +1,14 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {CalendarPicker} from "./index.ts";
 
 function App() {
-    const [state, setState] = useState<string | null>(null)
+    const [state, setState] = useState<string>()
+    useEffect(() => {
+
+    }, [state]);
     return (
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '1000px'}}>
-            <CalendarPicker onChange={setState} value={state} />
+            <CalendarPicker value={state} onChange={setState} />
         </div>
     )
 }

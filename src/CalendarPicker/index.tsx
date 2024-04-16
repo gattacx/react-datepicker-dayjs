@@ -75,7 +75,7 @@ const CalendarPicker = (props: ICalendarPicker) => {
   const resetData = () => {
     setSelectedYear(Number(currentYear))
     setSelectedMonth(Number(currentMonth))
-    onChange && onChange(null)
+    onChange && onChange()
     setVisibleMonths(false)
     setVisibleYears(false)
     setVisibleCalendar(false)

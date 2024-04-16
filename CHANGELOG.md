@@ -10,3 +10,6 @@ All notable changes to this project will be documented in this file.
 - `max`: prop: Can set maximal data for selected. example: `max={'2024-09-14'}`
 - fix: invalid show selected date in calendar
 - change default format to: 'YYYY-MM-DD'
+
+### 1.0.16
+- Remove null from default state 

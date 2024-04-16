@@ -23,7 +23,7 @@ import '../../../node_modules/react-datepicker-dayjs/dist/style.css'
 
 function App() {
     // dayjs default return is string format
-	const [date, setDate] = useState<string | null>()
+	const [date, setDate] = useState<string>()
 	
 	return (
 		<DatePicker value={date} onChange={setDate} />
@@ -43,8 +43,7 @@ function App() {
 	return (
             <Controller
                 control={control}
-                render={({ field: { onChange, value }, 
-                         fieldState: { error } }) => (
+                render={({ field: { onChange, value }}) => (
                 <CalendarPicker
                     value={value}
                     onChange={onChange}
@@ -59,9 +58,9 @@ function App() {
 Property                | type          | Values                          | Description                                                                                
 ------------------------|---------------|---------------------------------|--------------------------------------------------------------------------------------------
 locale                  | string        | "en", "ru"                      | Changed language and day of started week. Default: en                                                                     
-type                    | String        | "month", "full"                 | Type of returned date (when type of month, days is not show). Default: full                                                                    
-onChange*               | string, null  | null, '1994-09-05'              | Returned date or null (if reset)                   
-value*                  | string, null  | null, '1994-09-05'              | Show date or placeholder                                                               
+type                    | String        | "month", "full"                 | Type of returned date (when type of month, days is not show)                                                                   
+onChange*               | string        | '1994-09-05'              | Returned date or null (if reset)                   
+value*                  | string        | '1994-09-05'              | Show date or placeholder                                                               
 returnedFormat          | string        | "YYYY.MM.DD", "MM.YYYY" and etc | Returned format of value, default: 'YYYY-MM-DD'
 placeholder             | string        | any string                      | default placeholder it's returnedFormat   
 globalStyles            | CSSProperties | any styles                      | Styles for global container                                                       
