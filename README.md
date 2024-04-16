@@ -31,6 +31,31 @@ function App() {
 }
 ```
 
+Use with react-hook-form
+```js
+import { CalendarPicker } from 'react-datepicker-dayjs'
+import { useFormContent, Controller } from 'react-hook-form'
+// if need a default styles
+import '../../../node_modules/react-datepicker-dayjs/dist/style.css'
+
+function App() {
+    
+	return (
+            <Controller
+                control={control}
+                render={({ field: { onChange, value }, 
+                         fieldState: { error } }) => (
+                <CalendarPicker
+                    value={value}
+                    onChange={onChange}
+                />
+            )}
+            name={'your-key'}
+        />
+	)
+}
+```
+
 Property                | type          | Values                          | Description                                                                                
 ------------------------|---------------|---------------------------------|--------------------------------------------------------------------------------------------
 locale                  | string        | "en", "ru"                      | Changed language and day of started week. Default: en                                                                     
