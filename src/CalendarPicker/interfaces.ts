@@ -3,7 +3,7 @@ import { CSSProperties } from "react";
 
 export interface ICalendarPicker {
   placeholder?: string
-  type?: 'month' | 'full'
+  type?: 'month' | 'date'
   onChange: (value?: string) => void
   mainColor?: string
   locale?: 'en' | 'ru'
@@ -45,7 +45,7 @@ export interface IDays {
 export interface IMonths {
   action?: (date: string) => void
   onChange: (value?: string) => void
-  type?: 'month' | 'full'
+  type?: 'month' | 'date'
   returnedFormat: string
   selectedMonth: number
   setVisibleCalendar: Dispatch<SetStateAction<boolean>>

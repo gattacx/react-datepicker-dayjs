@@ -15,7 +15,7 @@ const CalendarPicker = (props: ICalendarPicker) => {
     value,
     onChange,
     locale = 'en',
-    type = 'full',
+    type = 'date',
     returnedFormat = 'YYYY-MM-DD',
     mainColor = '#2F8DB3',
     calendarStyles,
