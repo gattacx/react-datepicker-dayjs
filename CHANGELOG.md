@@ -22,3 +22,6 @@ All notable changes to this project will be documented in this file.
 
 ### 1.1.0
 - update import styled to default import
+
+### 1.1.1
+- fix bug min max date

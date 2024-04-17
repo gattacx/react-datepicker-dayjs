@@ -7,18 +7,22 @@ import {useMemo} from "react";
 export const Day = (props: IDay) => {
     const { selectDay, item, returnedFormat, selectedMonth, selectedYear, currentYear, currentMonth, currentDay, max, min, mainColor, value } = props
 
-    const checkMinMaxDate = useMemo(() => {
-        if (min || max) {
+    const checkMinDate = useMemo(() => {
+        if (min) {
             return Number(returnedDate(selectedYear, selectedMonth - 1, item, returnedFormat, 'unix')) < dayjs(min).unix()
-                || Number(returnedDate(selectedYear, selectedMonth - 1, item, returnedFormat, 'unix')) > dayjs(max).unix()
         }
     }, [selectedYear, selectedMonth])
 
+    const checkMaxDate = useMemo(() => {
+        if (max) {
+            return Number(returnedDate(selectedYear, selectedMonth - 1, item, returnedFormat, 'unix')) > dayjs(max).unix()
+        }
+    }, [selectedYear, selectedMonth])
     return (
         <button
             type={'button'}
-            className={`hover-class ${checkMinMaxDate && 'inactive'}`}
-            onClick={() => !checkMinMaxDate && selectDay(item)}
+            className={`hover-class ${checkMinDate && 'inactive'} ${checkMaxDate && 'inactive'}`}
+            onClick={() => !checkMinDate && !checkMaxDate && selectDay(item)}
             value={item}
             style={{
                 background:

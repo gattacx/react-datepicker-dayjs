@@ -8,7 +8,7 @@ function App() {
     }, [state]);
     return (
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '1000px'}}>
-            <CalendarPicker value={state} onChange={setState} type={'month'}/>
+            <CalendarPicker value={state} onChange={setState} max={'2024-04-20'} returnedFormat={'DD.MM.YYYY'}/>
         </div>
     )
 }
