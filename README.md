@@ -26,7 +26,7 @@ function App() {
 	const [date, setDate] = useState<string>()
 	
 	return (
-		<DatePicker value={date} onChange={setDate} />
+		<CalendarPicker value={date} onChange={setDate} />
 	)
 }
 ```

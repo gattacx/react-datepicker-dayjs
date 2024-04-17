@@ -16,3 +16,6 @@ All notable changes to this project will be documented in this file.
 
 ### 1.0.17
 - Fix: invalid selected for type 'month'
+
+### 1.0.18
+- update readme
