@@ -19,7 +19,7 @@ yarn add react-datepicker-dayjs
 import { useState } from 'react'
 import { CalendarPicker } from 'react-datepicker-dayjs'
 // if need a default styles
-import '../../../node_modules/react-datepicker-dayjs/dist/style.css'
+import 'react-datepicker-dayjs/dist/style.css'
 
 function App() {
     // dayjs default return is string format
@@ -36,7 +36,7 @@ Use with react-hook-form
 import { CalendarPicker } from 'react-datepicker-dayjs'
 import { useFormContent, Controller } from 'react-hook-form'
 // if need a default styles
-import '../../../node_modules/react-datepicker-dayjs/dist/style.css'
+import 'react-datepicker-dayjs/dist/style.css'
 
 function App() {
     
