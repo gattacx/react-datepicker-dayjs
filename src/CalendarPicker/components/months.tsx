@@ -34,12 +34,12 @@ export const Months = (props: IMonths) => {
   }
 
   const selectMonth = (month: number) => {
-    setSelectedMonth(month)
-    setVisibleMonths(false)
     if (type === 'month') {
       type === 'month' && setVisibleCalendar(false)
-      const selected = new Date(selectedYear, selectedMonth - 1)
+      const selected = new Date(selectedYear, month - 1)
       onChange && onChange(dayjs(selected).format(returnedFormat))
+      setSelectedMonth(month)
+      setVisibleMonths(false)
     }
   }
 
