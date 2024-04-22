@@ -34,12 +34,12 @@ function App() {
 Use with react-hook-form
 ```js
 import { CalendarPicker } from 'react-datepicker-dayjs'
-import { useFormContent, Controller } from 'react-hook-form'
+import { useFormContext, Controller } from 'react-hook-form'
 // if need a default styles
 import 'react-datepicker-dayjs/dist/style.css'
 
 function App() {
-    
+        const { control } = useFormContext()
 	return (
             <Controller
                 control={control}
@@ -71,8 +71,9 @@ max                     | string        | none, "2024-05-12"              | Max 
 
 ### Todos
 
-- More variables to response
-- Calendar type according to international standard
 - Tests
 - Documentation
+
+
+# Please create a discussion if you have any comments or suggestions, thank you.
 
