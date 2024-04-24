@@ -28,3 +28,6 @@ All notable changes to this project will be documented in this file.
 
 ### 1.1.2
 - rename default type from 'full' to 'date'
+
+### 1.1.5
+- hotfix select month in type date(cannot be selected month)
