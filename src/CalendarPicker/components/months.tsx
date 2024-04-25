@@ -1,5 +1,5 @@
 import { IMonths} from "../interfaces.ts";
-import { shortlyMonths} from "../utils.ts";
+import {currentDate, shortlyMonths} from "../utils.ts";
 import { useTranslation} from "../hooks/useTranslation.ts";
 import toRightSvg from '../../assets/to_right.svg'
 import toLeftSvg from '../../assets/to_left.svg'
@@ -13,7 +13,6 @@ export const Months = (props: IMonths) => {
     selectedMonth,
     mainColor,
     setSelectedYear,
-    currentYear,
     setVisibleMonths,
     type,
     setVisibleCalendar,
@@ -23,12 +22,12 @@ export const Months = (props: IMonths) => {
   const { t } = useTranslation(lang)
 
   const toLeft = () => {
-    if (selectedYear > currentYear - 100) {
+    if (selectedYear > currentDate.year - 100) {
       setSelectedYear((prevState) => Number(prevState) - 1)
     }
   }
   const toRight = () => {
-    if (selectedYear < currentYear + 100) {
+    if (selectedYear < currentDate.year + 100) {
       setSelectedYear((prevState) => Number(prevState) + 1)
     }
   }

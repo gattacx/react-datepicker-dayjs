@@ -26,13 +26,10 @@ export interface IDays {
   returnedFormat: string
   locale: 'en' | 'ru'
   mainColor: string
-  currentDay: number
   selectDay: (day: number) => void
   toLeft(): void
   toRight(): void
   selectedMonth: number
-  currentMonth: number
-  currentYear: number
   showYears(): void
   selectedYear: number
   showMonths(): void
@@ -54,7 +51,6 @@ export interface IMonths {
   setSelectedMonth: Dispatch<SetStateAction<number>>
   mainColor: string
   setSelectedYear: Dispatch<SetStateAction<number>>
-  currentYear: number
   setVisibleMonths: Dispatch<SetStateAction<boolean>>
 }
 
@@ -68,9 +64,6 @@ export interface IDay {
   selectedMonth: number
   returnedFormat: string
   mainColor: string
-  currentMonth: number
-  currentYear: number
-  currentDay: number
   min?: string
   max?: string
 }

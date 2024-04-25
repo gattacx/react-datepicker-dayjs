@@ -56,3 +56,11 @@ export function returnedDate(year: number, month: number, item: number, returned
       return dayjs(new Date(year, month, item)).format(returnedFormat)
   }
 }
+
+const date = new Date()
+
+export const currentDate = {
+  year: Number(dayjs(date).format('YYYY')),
+  month: Number(dayjs(date).format('M')),
+  day: Number(dayjs(date).format('D'))
+}

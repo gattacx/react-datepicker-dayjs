@@ -1,6 +1,6 @@
 import './calendar.css'
 import dayjs from 'dayjs'
-import { calendar} from "./utils.ts";
+import {calendar, currentDate} from "./utils.ts";
 import { ICalendarPicker} from "./interfaces.ts";
 import calendarSvg from '../assets/calendar.svg'
 import { useMemo, useRef, useState } from 'react'
@@ -24,12 +24,10 @@ const CalendarPicker = (props: ICalendarPicker) => {
     min,
     max
   } = props
-  const currentMonth = Number(dayjs(new Date()).format('M'))
-  const currentYear = Number(dayjs(new Date()).format('YYYY'))
-  const currentDay = Number(dayjs(new Date()).format('D'))
+
   const calendarRef = useRef<HTMLDivElement>(null)
-  const [selectedMonth, setSelectedMonth] = useState<number>(currentMonth)
-  const [selectedYear, setSelectedYear] = useState<number>(currentYear)
+  const [selectedMonth, setSelectedMonth] = useState<number>(currentDate.month)
+  const [selectedYear, setSelectedYear] = useState<number>(currentDate.year)
   const [visibleCalendar, setVisibleCalendar] = useState(false)
   const [visibleYears, setVisibleYears] = useState(false)
   const [visibleMonths, setVisibleMonths] = useState(false)
@@ -72,21 +70,22 @@ const CalendarPicker = (props: ICalendarPicker) => {
     }
   }
 
-  const resetData = () => {
-    setSelectedYear(Number(currentYear))
-    setSelectedMonth(Number(currentMonth))
-    onChange && onChange()
+  const closeAll = () => {
     setVisibleMonths(false)
     setVisibleYears(false)
     setVisibleCalendar(false)
   }
+  const resetData = () => {
+    setSelectedYear(Number(currentDate.year))
+    setSelectedMonth(Number(currentDate.month))
+    onChange && onChange()
+    closeAll()
+  }
   const selectToday = () => {
-    selectDay(Number(currentDay), currentYear, currentMonth - 1)
-    setSelectedYear(Number(currentYear))
-    setSelectedMonth(Number(currentMonth))
-    setVisibleMonths(false)
-    setVisibleYears(false)
-    setVisibleCalendar(false)
+    selectDay(Number(currentDate.day), currentDate.year, currentDate.month - 1)
+    setSelectedYear(Number(currentDate.year))
+    setSelectedMonth(Number(currentDate.month))
+    closeAll()
   }
   const showYears = () => setVisibleYears(true)
   const showMonths = () => setVisibleMonths(true)
@@ -110,7 +109,6 @@ const CalendarPicker = (props: ICalendarPicker) => {
           setSelectedMonth={setSelectedMonth}
           mainColor={mainColor}
           setSelectedYear={setSelectedYear}
-          currentYear={currentYear}
           setVisibleMonths={setVisibleMonths}
           setVisibleCalendar={setVisibleCalendar}
           onChange={onChange}
@@ -127,7 +125,6 @@ const CalendarPicker = (props: ICalendarPicker) => {
             setSelectedMonth={setSelectedMonth}
             mainColor={mainColor}
             setSelectedYear={setSelectedYear}
-            currentYear={currentYear}
             setVisibleMonths={setVisibleMonths}
             type={'month'}
             setVisibleCalendar={setVisibleCalendar}
@@ -140,10 +137,7 @@ const CalendarPicker = (props: ICalendarPicker) => {
           <Days
             locale={locale}
             mainColor={mainColor}
-            currentDay={currentDay}
             selectDay={selectDay}
-            currentMonth={currentMonth}
-            currentYear={currentYear}
             toLeft={toLeft}
             toRight={toRight}
             selectedMonth={selectedMonth}
