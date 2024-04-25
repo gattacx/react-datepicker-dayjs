@@ -13,7 +13,6 @@ export const Months = (props: IMonths) => {
     selectedMonth,
     mainColor,
     setSelectedYear,
-    setVisibleMonths,
     type,
     setVisibleCalendar,
     returnedFormat,
@@ -33,14 +32,13 @@ export const Months = (props: IMonths) => {
   }
 
   const selectMonth = (month: number) => {
-    type === 'month' && setVisibleCalendar(false)
     const selected = new Date(selectedYear, month - 1)
     onChange && onChange(dayjs(selected).format(returnedFormat))
     setSelectedMonth(month)
-    setVisibleMonths(false)
+    setVisibleCalendar(type === 'month' ? false : 'days')
   }
 
-  const closeBlock = () => setVisibleMonths(false)
+  const closeBlock = () => setVisibleCalendar(type === 'month' ? false : 'days')
   return (
     <>
       <div className={'top-panel'}>

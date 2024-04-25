@@ -1,7 +1,7 @@
 import './calendar.css'
 import dayjs from 'dayjs'
 import {calendar, currentDate} from "./utils.ts";
-import { ICalendarPicker} from "./interfaces.ts";
+import {ICalendarPicker, TVisibleCalendar} from "./interfaces.ts";
 import calendarSvg from '../assets/calendar.svg'
 import { useMemo, useRef, useState } from 'react'
 import { useOnClickOutside} from "./hooks/useClickOutside.ts";
@@ -16,7 +16,7 @@ const CalendarPicker = (props: ICalendarPicker) => {
     onChange,
     locale = 'en',
     type = 'date',
-    returnedFormat = 'YYYY-MM-DD',
+    returnedFormat = type === 'date' ? 'YYYY-MM-DD' : 'YYYY-MM',
     mainColor = '#2F8DB3',
     calendarStyles,
     placeholder = returnedFormat,
@@ -28,9 +28,7 @@ const CalendarPicker = (props: ICalendarPicker) => {
   const calendarRef = useRef<HTMLDivElement>(null)
   const [selectedMonth, setSelectedMonth] = useState<number>(currentDate.month)
   const [selectedYear, setSelectedYear] = useState<number>(currentDate.year)
-  const [visibleCalendar, setVisibleCalendar] = useState(false)
-  const [visibleYears, setVisibleYears] = useState(false)
-  const [visibleMonths, setVisibleMonths] = useState(false)
+  const [visibleCalendar, setVisibleCalendar] = useState<TVisibleCalendar>(false)
   const { t } = useTranslation(locale)
   dayjs.locale(locale)
   const defaultLabel = useMemo(() => {
@@ -41,7 +39,13 @@ const CalendarPicker = (props: ICalendarPicker) => {
     return calendar(selectedMonth, selectedYear)
   }, [selectedMonth, selectedYear])
 
-  const changeVisible = () => setVisibleCalendar((prevState) => !prevState)
+  const changeVisible = () => setVisibleCalendar((prevState) => {
+    if (!prevState) {
+      return type === "month" ? "months" : "days"
+    } else {
+      return false
+    }
+  })
   const closeCalendar = () => setVisibleCalendar(false)
 
   useOnClickOutside(calendarRef, closeCalendar)
@@ -70,89 +74,62 @@ const CalendarPicker = (props: ICalendarPicker) => {
     }
   }
 
-  const closeAll = () => {
-    setVisibleMonths(false)
-    setVisibleYears(false)
-    setVisibleCalendar(false)
-  }
   const resetData = () => {
     setSelectedYear(Number(currentDate.year))
     setSelectedMonth(Number(currentDate.month))
     onChange && onChange()
-    closeAll()
+    setVisibleCalendar(false)
   }
   const selectToday = () => {
     selectDay(Number(currentDate.day), currentDate.year, currentDate.month - 1)
     setSelectedYear(Number(currentDate.year))
     setSelectedMonth(Number(currentDate.month))
-    closeAll()
+    setVisibleCalendar(false)
   }
-  const showYears = () => setVisibleYears(true)
-  const showMonths = () => setVisibleMonths(true)
+  const showYears = () => setVisibleCalendar("years")
+  const showMonths = () => setVisibleCalendar("months")
   const CurrentShow = () => {
-    if (visibleYears) {
-      return (
-        <Years
-          selectedYear={selectedYear}
-          setSelectedYear={setSelectedYear}
-          setVisibleYears={setVisibleYears}
-          mainColor={mainColor}
-        />
-      )
-    } else if (visibleMonths) {
-      return (
-        <Months
-          selectedYear={selectedYear}
-          lang={locale}
-          selectedMonth={selectedMonth}
-          returnedFormat={returnedFormat}
-          setSelectedMonth={setSelectedMonth}
-          mainColor={mainColor}
-          setSelectedYear={setSelectedYear}
-          setVisibleMonths={setVisibleMonths}
-          setVisibleCalendar={setVisibleCalendar}
-          onChange={onChange}
-        />
-      )
-    } else {
-      if (type === 'month') {
-        return (
-          <Months
+
+    switch (visibleCalendar) {
+      case "years":
+        return <Years
             selectedYear={selectedYear}
-            returnedFormat={returnedFormat}
-            lang={locale}
-            selectedMonth={selectedMonth}
-            setSelectedMonth={setSelectedMonth}
-            mainColor={mainColor}
             setSelectedYear={setSelectedYear}
-            setVisibleMonths={setVisibleMonths}
-            type={'month'}
             setVisibleCalendar={setVisibleCalendar}
-            action={onChange}
-            onChange={onChange}
-          />
-        )
-      } else {
-        return (
-          <Days
-            locale={locale}
             mainColor={mainColor}
-            selectDay={selectDay}
-            toLeft={toLeft}
-            toRight={toRight}
-            selectedMonth={selectedMonth}
-            showYears={showYears}
-            showMonths={showMonths}
+        />
+      case "months":
+        return  <Months
             selectedYear={selectedYear}
-            displayData={displayData}
-            value={value}
+            selectedMonth={selectedMonth}
             returnedFormat={returnedFormat}
-            min={min}
-            max={max}
-          />
-        )
-      }
+            setSelectedMonth={setSelectedMonth}
+            setSelectedYear={setSelectedYear}
+            setVisibleCalendar={setVisibleCalendar}
+            onChange={onChange}
+            mainColor={mainColor}
+            lang={locale}
+            type={type}
+        />
+      case "days":
+       return  <Days
+           locale={locale}
+           mainColor={mainColor}
+           selectDay={selectDay}
+           toLeft={toLeft}
+           toRight={toRight}
+           selectedMonth={selectedMonth}
+           showYears={showYears}
+           showMonths={showMonths}
+           selectedYear={selectedYear}
+           displayData={displayData}
+           value={value}
+           returnedFormat={returnedFormat}
+           min={min}
+           max={max}
+       />
     }
+
   }
   return (
     <div className={'calendar-container'} ref={calendarRef} style={{ ...globalStyles }}>

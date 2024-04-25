@@ -8,7 +8,7 @@ function App() {
     }, [state]);
     return (
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '1000px'}}>
-            <CalendarPicker value={state} onChange={setState}/>
+            <CalendarPicker value={state} onChange={setState} type={'month'}/>
         </div>
     )
 }
