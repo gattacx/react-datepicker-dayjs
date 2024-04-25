@@ -11,7 +11,6 @@ export const Days = (props: IDays) => {
     locale,
     displayData,
     mainColor,
-    currentDay,
     selectDay,
     toLeft,
     toRight,
@@ -21,8 +20,6 @@ export const Days = (props: IDays) => {
     showMonths,
     value,
     returnedFormat,
-    currentYear,
-    currentMonth,
     min,
     max
   } = props
@@ -103,9 +100,6 @@ export const Days = (props: IDays) => {
                   selectedMonth={selectedMonth}
                   returnedFormat={returnedFormat}
                   mainColor={mainColor}
-                  currentMonth={currentMonth}
-                  currentYear={currentYear}
-                  currentDay={currentDay}
                   min={min}
                   max={max}
                   key={index}

@@ -15,10 +15,11 @@ export interface ICalendarPicker {
   max?: string
 }
 
+export type TVisibleCalendar = boolean | 'days' | 'months' | 'years'
 export interface IYears {
   selectedYear: number
   setSelectedYear: Dispatch<SetStateAction<number>>
-  setVisibleYears: Dispatch<SetStateAction<boolean>>
+  setVisibleCalendar: Dispatch<SetStateAction<TVisibleCalendar>>
   mainColor: string
 }
 
@@ -26,13 +27,10 @@ export interface IDays {
   returnedFormat: string
   locale: 'en' | 'ru'
   mainColor: string
-  currentDay: number
   selectDay: (day: number) => void
   toLeft(): void
   toRight(): void
   selectedMonth: number
-  currentMonth: number
-  currentYear: number
   showYears(): void
   selectedYear: number
   showMonths(): void
@@ -43,19 +41,16 @@ export interface IDays {
 }
 
 export interface IMonths {
-  action?: (date: string) => void
   onChange: (value?: string) => void
-  type?: 'month' | 'date'
+  type: 'month' | 'date'
   returnedFormat: string
   selectedMonth: number
-  setVisibleCalendar: Dispatch<SetStateAction<boolean>>
+  setVisibleCalendar: Dispatch<SetStateAction<TVisibleCalendar>>
   selectedYear: number
   lang: 'en' | 'ru'
   setSelectedMonth: Dispatch<SetStateAction<number>>
   mainColor: string
   setSelectedYear: Dispatch<SetStateAction<number>>
-  currentYear: number
-  setVisibleMonths: Dispatch<SetStateAction<boolean>>
 }
 
 export type LangJSON = Record<string, string>
@@ -68,9 +63,6 @@ export interface IDay {
   selectedMonth: number
   returnedFormat: string
   mainColor: string
-  currentMonth: number
-  currentYear: number
-  currentDay: number
   min?: string
   max?: string
 }

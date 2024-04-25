@@ -1,11 +1,11 @@
 import {IDay} from "../interfaces.ts";
 import dayjs from "dayjs";
-import {returnedDate} from "../utils.ts";
+import {currentDate, returnedDate} from "../utils.ts";
 import {useMemo} from "react";
 
 
 export const Day = (props: IDay) => {
-    const { selectDay, item, returnedFormat, selectedMonth, selectedYear, currentYear, currentMonth, currentDay, max, min, mainColor, value } = props
+    const { selectDay, item, returnedFormat, selectedMonth, selectedYear, max, min, mainColor, value } = props
 
     const checkMinDate = useMemo(() => {
         if (min) {
@@ -29,10 +29,10 @@ export const Day = (props: IDay) => {
                     value ===
                     dayjs(new Date(selectedYear, selectedMonth - 1, item)).format(returnedFormat)
                         ? mainColor
-                        : dayjs(new Date(currentYear, currentMonth, item)).format(returnedFormat) ===
+                        : dayjs(new Date(currentDate.year, currentDate.month, item)).format(returnedFormat) ===
                         dayjs(new Date(selectedYear, selectedMonth, item)).format(
                             returnedFormat
-                        ) && item === currentDay
+                        ) && item === currentDate.day
                             ? '#D8DDED'
                             : 'none',
                 color:

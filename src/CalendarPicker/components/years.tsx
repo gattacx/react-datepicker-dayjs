@@ -4,7 +4,7 @@ import { IYears} from "../interfaces.ts";
 import toLeftSvg from '../../assets/to_left.svg'
 import toRightSvg from '../../assets/to_right.svg'
 export const Years = (props: IYears) => {
-  const { selectedYear, setSelectedYear, setVisibleYears, mainColor } = props
+  const { selectedYear, setSelectedYear, setVisibleCalendar, mainColor } = props
 
   const toLeft = () => {
     if (selectedYear > 1980) {
@@ -22,11 +22,11 @@ export const Years = (props: IYears) => {
   }, [selectedYear])
 
   const selectYear = (year: number) => {
-    setVisibleYears(false)
+    setVisibleCalendar("months")
     setSelectedYear(year)
   }
 
-  const closeBlock = () => setVisibleYears(false)
+  const closeBlock = () => setVisibleCalendar("months")
   return (
     <>
       <div className={'top-panel'}>
