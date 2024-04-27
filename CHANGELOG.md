@@ -31,3 +31,6 @@ All notable changes to this project will be documented in this file.
 
 ### 1.1.5
 - hotfix select month in type date(cannot be selected month)
+
+### 1.2.0
+- drop deps, refactoring for clean code
