@@ -8,11 +8,13 @@
 ## Installation
 ```
 npm install react-datepicker-dayjs
+npm install dayjs
 ```
 Or via yarn:
 
 ```
 yarn add react-datepicker-dayjs
+yarn add dayjs
 ```
 
 ```js
