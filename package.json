@@ -1,14 +1,14 @@
 {
   "name": "react-datepicker-dayjs",
   "private": false,
-  "description": "datePicker on react + dayjs",
+  "description": "DatePicker on react + dayjs",
   "license": "MIT",
-  "version": "1.2.1",
-  "author": "Bogdan Voitenko <voitenko.bogdan.dev@yandex.ru> @voitenkodev",
-  "homepage": "https://github.com/BladeOfAurora/react-datepicker-dayjs",
+  "version": "1.2.2",
+  "author": "Bogdan Voitenko <gattacx@yandex.ru> @gattacx",
+  "homepage": "https://github.com/gattacx/react-datepicker-dayjs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/BladeOfAurora/react-datepicker-dayjs"
+    "url": "https://github.com/gattacx/react-datepicker-dayjs"
   },
   "contributors": [
     ""
