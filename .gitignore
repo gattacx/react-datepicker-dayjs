@@ -13,6 +13,9 @@ dist-ssr
 *.local
 yarn.lock
 
+src/App.tsx
+src/main.tsx
+index.html
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

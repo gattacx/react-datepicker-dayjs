@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 import {calendar, currentDate} from "./utils.ts";
 import {ICalendarPicker, TVisibleCalendar} from "./interfaces.ts";
 import calendarSvg from '../assets/calendar.svg'
-import { useMemo, useRef, useState } from 'react'
+import {useEffect, useMemo, useRef, useState} from 'react'
 import { useOnClickOutside} from "./hooks/useClickOutside.ts";
 import { useTranslation} from "./hooks/useTranslation.ts";
 import { Years} from "./components/years.tsx";
@@ -55,7 +55,18 @@ const CalendarPicker = (props: ICalendarPicker) => {
     onChange && onChange(dayjs(selected).format(returnedFormat))
     setVisibleCalendar(false)
   }
-
+  const allowInitSelect = useRef(true)
+  useEffect(() => {
+    if (allowInitSelect.current && value) {
+      allowInitSelect.current = false
+      const current =  value?.split('.').map((item) => Number(item))
+      setSelectedYear(current[2])
+      if (current) {
+        setSelectedMonth(current[1])
+        selectDay(current[0], current[2], current[1] - 1)
+      }
+    }
+  }, [value])
   const toLeft = () => {
     if (selectedMonth === 1) {
       setSelectedMonth(12)
